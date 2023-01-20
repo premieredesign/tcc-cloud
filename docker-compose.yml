@@ -1,0 +1,30 @@
+
+version: "3.6"
+services:          
+             
+  tcc-client:
+    image: "cmjsoftware1/tcc-website"
+    container_name: "tcc-website"
+    restart: always
+    ports:
+      - "4200:4200"
+    env_file:
+      - .env
+    volumes:
+      - ./client:/app/client
+           
+  tcc-api:
+    image: "cmjsoftware1/tcc-api-srv"
+    container_name: "tcc-api-srv"
+    restart: always
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env
+    volumes:
+      - ./api:/app/api
+          
+networks:
+  default:
+    driver: bridge        
+            
